@@ -28,13 +28,13 @@ namespace Clientes.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] ClienteCadastrarRequest request)
+        public IActionResult Post([FromBody] CadastrarClienteRequest request)
         {
             return Created("", request);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put([FromRoute] int id, [FromBody] ClienteAtualizarRequest request)
+        public IActionResult Put([FromRoute] int id, [FromBody] AtualizarClienteRequest request)
         {
             return Accepted(id);
         }

@@ -1,7 +1,6 @@
 ﻿using Clientes.Dominio.Core.Interfaces;
 using Clientes.Infra.Clientes.Mapeamento;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 
 namespace Clientes.Infra.Persistencia
 {

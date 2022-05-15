@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Clientes.Aplicacao.Clientes.Servicos
+namespace Clientes.TesteUnitario.Clientes
 {
-    public class ClienteAppServico
+    public class ClienteEntidadeTest
     {
     }
 }

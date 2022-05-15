@@ -2,14 +2,13 @@
 using Clientes.Dominio.Clientes.Repositorios;
 using Clientes.Dominio.Core.Extensoes;
 using Clientes.Dominio.Excecoes;
-using System;
 
 namespace Clientes.Dominio.Clientes.Servicos
 {
-    public class ClienteValidarServico : IClienteValidarServico
+    public class ValidarClienteServico : IValidarClienteServico
     {
         private readonly IClienteRepositorio _clienteRepositorio;
-        public ClienteValidarServico(IClienteRepositorio clienteRepositorio)
+        public ValidarClienteServico(IClienteRepositorio clienteRepositorio)
         {
             _clienteRepositorio = clienteRepositorio;
         }
