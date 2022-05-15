@@ -2,6 +2,7 @@
 using Clientes.DTO.Clientes.Request;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace Clientes.API.Controllers
 {
@@ -29,9 +30,9 @@ namespace Clientes.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] CadastrarClienteRequest request, [FromServices] CadastrarClienteAppServico appServico)
+        public async Task<IActionResult> Post([FromBody] CadastrarClienteRequest request, [FromServices] ICadastrarClienteAppServico appServico)
         {
-            var response = appServico.Cadastrar(request);
+            var response = await appServico.Cadastrar(request);
 
             return Created("", response);
         }
