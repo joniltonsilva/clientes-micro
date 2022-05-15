@@ -24,9 +24,11 @@ namespace Clientes.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get([FromRoute] int id)
+        public IActionResult Get([FromRoute] int id, [FromServices] IRecuperarClienteAppServico appServico)
         {
-            return Ok(id);
+            var response = appServico.RecuperarPorId(id);
+
+            return Ok(response);
         }
 
         [HttpPost]
@@ -38,15 +40,19 @@ namespace Clientes.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put([FromRoute] int id, [FromBody] AtualizarClienteRequest request)
+        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] AtualizarClienteRequest request, [FromServices] IAtualizarClienteAppServico appServico)
         {
-            return Accepted(id);
+            var response = await appServico.Atualizar(id, request);
+
+            return Accepted(response);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int id, [FromServices] IDeletarClienteAppServico appServico)
         {
-            return Accepted(id);
+            await appServico.Deletar(id);
+
+            return Accepted();
         }
     }
 }

@@ -15,6 +15,11 @@ namespace Clientes.Dominio.Clientes.Entidades
             SetPorte(porte);
         }
 
+        public virtual void SetId(int id)
+        {
+            Id = id;
+        }
+
         public virtual void SetNome(string nome)
         {
             if (nome is null) throw new AtributoNuloExcecao(nameof(Nome));

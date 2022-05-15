@@ -38,6 +38,7 @@ namespace Clientes.IoC
         {
             services.AddScoped<ICadastrarClienteAppServico, CadastrarClienteAppServico>();
             services.AddScoped<IAtualizarClienteAppServico, AtualizarClienteAppServico>();
+            services.AddScoped<IRecuperarClienteAppServico, RecuperarClienteAppServico>();
         }
 
         private static void RegistrarServicoDominio(IServiceCollection services)

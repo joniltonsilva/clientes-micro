@@ -23,11 +23,14 @@ namespace Clientes.Aplicacao.Clientes.Servicos
             _validarClienteServico = validarClienteServico;
         }
 
-        public async Task<ClienteResponse> Cadastrar(CadastrarClienteRequest request)
+        public async Task<ClienteResponse> Atualizar(int id, AtualizarClienteRequest request)
         {
             try
             {
-                var cliente = _mapper.Map<Cliente>(request);
+                var cliente = _validarClienteServico.Validar(id);
+
+                cliente.SetNome(request.Nome);
+                cliente.SetPorte(request.Porte);
 
                 _validarClienteServico.Validar(cliente);
 

@@ -24,5 +24,16 @@ namespace Clientes.Dominio.Clientes.Servicos
             }
         }
 
+        public Cliente Validar(int id)
+        {
+            var cliente = _clienteRepositorio.Recuperar(id);
+            if (cliente.ENulo())
+            {
+                throw new RegistroNaoEncontradoExcecao($" para o Id: {id}");
+            }
+
+            return cliente;
+        }
+
     }
 }

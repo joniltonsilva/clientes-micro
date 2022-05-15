@@ -6,6 +6,6 @@ namespace Clientes.Aplicacao.Clientes.Servicos
 {
     public interface IAtualizarClienteAppServico
     {
-        Task<ClienteResponse> Cadastrar(CadastrarClienteRequest request);
+        Task<ClienteResponse> Atualizar(int id, AtualizarClienteRequest request);
     }
 }
