@@ -1,4 +1,5 @@
-﻿using Clientes.DTO.Clientes.Request;
+﻿using Clientes.Aplicacao.Clientes.Servicos;
+using Clientes.DTO.Clientes.Request;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -28,9 +29,11 @@ namespace Clientes.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] CadastrarClienteRequest request)
+        public IActionResult Post([FromBody] CadastrarClienteRequest request, [FromServices] CadastrarClienteAppServico appServico)
         {
-            return Created("", request);
+            var response = appServico.Cadastrar(request);
+
+            return Created("", response);
         }
 
         [HttpPut("{id}")]
