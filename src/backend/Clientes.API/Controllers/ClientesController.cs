@@ -18,9 +18,11 @@ namespace Clientes.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] FiltrarClienteRequest request, [FromServices] IRecuperarClienteAppServico appServico)
         {
-            return Ok();
+            var response = appServico.RecuperarPaginado(request);
+
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
