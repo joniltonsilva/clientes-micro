@@ -15,7 +15,7 @@ namespace Clientes.IoC
             services.AddDbContextFactory<ClienteDbContext>(options => MapSqliteDbOptions(options, configuration));
             services.AddDbContext<ClienteDbContext>(options => MapSqliteDbOptions(options, configuration));
 
-            services.AddScoped(provider => provider.GetService<ClienteDbContext>());
+            services.AddScoped<IClienteDbContext>(provider => provider.GetService<ClienteDbContext>());
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(ClienteProfile));
