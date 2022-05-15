@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Clientes.DTO.Clientes.Request;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Clientes.API.Controllers
 {
     [ApiController]
-    [Route("clientes")]
+    [Route("api/clientes")]
     public class ClientesController : ControllerBase
     {  
         private readonly ILogger<ClientesController> _logger;
@@ -27,21 +28,21 @@ namespace Clientes.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] dynamic data)
+        public IActionResult Post([FromBody] ClienteCadastrarRequest request)
         {
-            return Ok(data);
+            return Created("", request);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put([FromRoute] int id, [FromBody] dynamic data)
+        public IActionResult Put([FromRoute] int id, [FromBody] ClienteAtualizarRequest request)
         {
-            return Ok(id);
+            return Accepted(id);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            return Ok(id);
+            return Accepted(id);
         }
     }
 }

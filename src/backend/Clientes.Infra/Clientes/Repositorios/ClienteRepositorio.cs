@@ -2,6 +2,7 @@
 using Clientes.Dominio.Clientes.Repositorios;
 using Clientes.Dominio.Core.Interfaces;
 using Clientes.Infra.Core.Repositorios;
+using System.Linq;
 
 namespace Clientes.Infra.Clientes.Repositorios
 {
@@ -9,6 +10,11 @@ namespace Clientes.Infra.Clientes.Repositorios
     {
         public ClienteRepositorio(IClienteDbContext dbContext) : base(dbContext)
         {
+        }
+
+        public Cliente RecuperarPorNome(string nome)
+        {
+            return IQueryable(p => p.Nome == nome).FirstOrDefault();
         }
     }
 }

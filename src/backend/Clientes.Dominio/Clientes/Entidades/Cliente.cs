@@ -26,5 +26,10 @@ namespace Clientes.Dominio.Clientes.Entidades
         {
             Porte = porte;
         }
+
+        public void Validar()
+        {
+            if (Nome is null) throw new AtributoNuloExcecao(nameof(Nome));
+        }
     }
 }

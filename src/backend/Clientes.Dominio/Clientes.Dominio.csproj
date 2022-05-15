@@ -3,13 +3,15 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+    <Compile Remove="Core\Interfaces\Clientes\**" />
+    <EmbeddedResource Remove="Core\Interfaces\Clientes\**" />
+    <None Remove="Core\Interfaces\Clientes\**" />
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="Clientes\Servicos\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
   </ItemGroup>
 
 </Project>
