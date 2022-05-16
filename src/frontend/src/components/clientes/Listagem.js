@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Api from "../../services/clientes-api"
 import Atualizar from './Atualizar';
 import Cadastrar from './Cadastrar';
+import Deletar from './Deletar';
 
 export default function Listagem() {
 
@@ -51,7 +52,7 @@ export default function Listagem() {
                             <td> {cliente.Porte} </td>
                             <td>
                                 <button className="btn btn-info btn-sm mr-2" onClick={() => setClienteAtual(cliente)} data-toggle="modal" data-target="#atualizarModal"> Alterar </button>
-                                <button className="btn btn-danger btn-sm" onClick={() => deletarCliente(cliente.Id)}> Deletar </button>
+                                <button className="btn btn-danger btn-sm" onClick={() => setClienteAtual(cliente)} data-toggle="modal" data-target="#deletarModal"> Deletar </button>
                             </td>
                         </tr>
                     ))}
@@ -61,6 +62,7 @@ export default function Listagem() {
         </div>
         <Cadastrar />
         <Atualizar cliente={clienteAtual} />
+        <Deletar cliente={clienteAtual} />
     </div>
   )
 }

@@ -17,7 +17,7 @@ export default function Atualizar({ cliente }) {
         const request = { ...formulario, Id: cliente.Id };
         const response = await Api.put(`/${cliente.Id}`, request);
         if(response.status == 202){
-            document.getElementById("fecharModal").click();
+            document.getElementById("fecharAtualizarModal").click();
         }
     }
 
@@ -65,7 +65,7 @@ export default function Atualizar({ cliente }) {
                         </div>
 
                         <button type="button" onClick={onAtualizar} className="btn btn-primary btn-sm">Cadastrar</button>
-                        <button type="button" id="fecharModal" className="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="fecharAtualizarModal" className="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
                     </div>
                </form>
             </div>

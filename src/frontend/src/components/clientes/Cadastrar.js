@@ -17,7 +17,7 @@ export default function Cadastrar() {
         const request = formulario;
         const response = await Api.post("", request);
         if(response.status == 201){
-            document.getElementById("fecharModal").click();
+            document.getElementById("fecharCadastrarModal").click();
         }
     }
 
@@ -63,7 +63,7 @@ export default function Cadastrar() {
                         </div>
 
                         <button type="button" onClick={onCadastrar} className="btn btn-primary btn-sm">Cadastrar</button>
-                        <button type="button" id="fecharModal" className="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="fecharCadastrarModal" className="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
                     </div>
                </form>
             </div>
