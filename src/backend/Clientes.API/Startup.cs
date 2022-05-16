@@ -37,7 +37,9 @@ namespace Clientes.API
 
             services.AddCors(options =>
             {
-                options.AddPolicy(name: ClientesSpecificOrigins, policy => policy.WithOrigins("http://localhost:3000"));
+                options.AddPolicy(name: ClientesSpecificOrigins, policy => policy.WithOrigins("http://localhost:3000")
+                                                                                 .AllowAnyHeader()
+                                                                                 .AllowAnyMethod());
             });
 
             NativeInjectorBootstrap.ConfigureServices(services, _configuration);
