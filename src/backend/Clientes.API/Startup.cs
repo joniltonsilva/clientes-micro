@@ -28,6 +28,7 @@ namespace Clientes.API
 
             services.AddControllers().AddJsonOptions(options =>
             {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
             });
             services.AddSwaggerGen(c =>
