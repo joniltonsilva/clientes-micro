@@ -1,5 +1,7 @@
 ﻿using Clientes.Aplicacao.Clientes.Servicos;
 using Clientes.DTO.Clientes.Request;
+using Clientes.DTO.Clientes.Response;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
@@ -18,6 +20,7 @@ namespace Clientes.API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ClientesPaginadoResponse))]
         public IActionResult Get([FromQuery] FiltrarClienteRequest request, [FromServices] IRecuperarClienteAppServico appServico)
         {
             var response = appServico.RecuperarPaginado(request);
@@ -26,6 +29,7 @@ namespace Clientes.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ClienteResponse))]
         public IActionResult Get([FromRoute] int id, [FromServices] IRecuperarClienteAppServico appServico)
         {
             var response = appServico.RecuperarPorId(id);
@@ -34,6 +38,7 @@ namespace Clientes.API.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ClienteResponse))]
         public async Task<IActionResult> Post([FromBody] CadastrarClienteRequest request, [FromServices] ICadastrarClienteAppServico appServico)
         {
             var response = await appServico.Cadastrar(request);
@@ -42,6 +47,7 @@ namespace Clientes.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status202Accepted, Type = typeof(ClienteResponse))]
         public async Task<IActionResult> Put([FromRoute] int id, [FromBody] AtualizarClienteRequest request, [FromServices] IAtualizarClienteAppServico appServico)
         {
             var response = await appServico.Atualizar(id, request);
@@ -50,6 +56,7 @@ namespace Clientes.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status202Accepted, Type = typeof(ClienteResponse))]
         public async Task<IActionResult> Delete([FromRoute] int id, [FromServices] IDeletarClienteAppServico appServico)
         {
             await appServico.Deletar(id);

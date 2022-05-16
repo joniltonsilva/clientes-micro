@@ -1,6 +1,7 @@
 using Clientes.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +14,7 @@ namespace Clientes.API
     {
         private IWebHostEnvironment _env;
         private IConfiguration _configuration;
+        private string ClientesSpecificOrigins = "_ClientesSpecificOrigins";
 
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
@@ -24,10 +26,18 @@ namespace Clientes.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = $"API de Clientes", Version = "v1" });
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: ClientesSpecificOrigins, policy => policy.WithOrigins("http://localhost:3000"));
             });
 
             NativeInjectorBootstrap.ConfigureServices(services, _configuration);
@@ -46,6 +56,8 @@ namespace Clientes.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(ClientesSpecificOrigins);
 
             app.UseAuthorization();
 
