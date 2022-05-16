@@ -1,7 +1,7 @@
 import React, {useState } from 'react'
 import Api from "../../services/clientes-api"
 
-export default function Cadastrar() {
+export default function Cadastrar({recarregar}) {
 
     const [formulario, setFormulario] = useState({
        Nome: "",
@@ -17,6 +17,7 @@ export default function Cadastrar() {
         const request = formulario;
         const response = await Api.post("", request);
         if(response.status == 201){
+            recarregar();
             document.getElementById("fecharCadastrarModal").click();
         }
     }
@@ -48,15 +49,12 @@ export default function Cadastrar() {
 
                             <div className="input-field col s4">
                                 <label className="input-field" htmlFor="Porte">Porte</label>
-                                <input
-                                    className="validate"
-                                    id="Porte"
-                                    type="text"
-                                    name="Porte"
-                                    value={formulario.Porte}
-                                    onChange={onChange}
-                                />
-
+                                <select className="validate" id="Porte" name="Porte" value={formulario.Porte}  onChange={onChange}>
+                                    <option value="Pequeno">Pequeno</option>
+                                    <option value="Medio" selected>Medio</option>
+                                    <option value="Grande">Grande</option>
+                                </select>
+                         
                             </div>
 
 

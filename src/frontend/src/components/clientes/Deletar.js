@@ -1,11 +1,12 @@
 import React, {useEffect, useState } from 'react'
 import Api from "../../services/clientes-api"
 
-export default function Deletar({ cliente }) {
+export default function Deletar({ cliente, recarregar }) {
 
     const onDeletar = async () => {
         const response = await Api.delete(`/${cliente.Id}`);
         if(response.status == 202){
+            recarregar();
             document.getElementById("fecharDeletarModal").click();
         }
     }

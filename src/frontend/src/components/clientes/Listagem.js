@@ -23,10 +23,6 @@ export default function Listagem() {
         setCarregando(false);
     }
 
-    const deletarCliente = (id) => {
-
-    }
-
   return (
     <div className="card mt-4">
         <div className="card-header">
@@ -60,9 +56,9 @@ export default function Listagem() {
                 </table>
             </div>
         </div>
-        <Cadastrar />
-        <Atualizar cliente={clienteAtual} />
-        <Deletar cliente={clienteAtual} />
+        <Cadastrar recarregar={recuperarListagem} />
+        <Atualizar cliente={clienteAtual} recarregar={recuperarListagem}/>
+        <Deletar cliente={clienteAtual} recarregar={recuperarListagem}/>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react'
 import Api from "../../services/clientes-api"
 
-export default function Atualizar({ cliente }) {
+export default function Atualizar({ cliente, recarregar }) {
 
     const [formulario, setFormulario] = useState({
         Nome: cliente.Nome,
@@ -17,6 +17,7 @@ export default function Atualizar({ cliente }) {
         const request = { ...formulario, Id: cliente.Id };
         const response = await Api.put(`/${cliente.Id}`, request);
         if(response.status == 202){
+            recarregar();
             document.getElementById("fecharAtualizarModal").click();
         }
     }
@@ -50,14 +51,11 @@ export default function Atualizar({ cliente }) {
 
                             <div className="input-field col s4">
                                 <label className="input-field" htmlFor="Porte">Porte</label>
-                                <input
-                                    className="validate"
-                                    id="Porte"
-                                    type="text"
-                                    name="Porte"
-                                    value={formulario.Porte || Porte}
-                                    onChange={onChange}
-                                />
+                                <select className="validate" id="Porte" name="Porte" value={formulario.Porte || Porte}  onChange={onChange}>
+                                    <option value="Pequeno">Pequeno</option>
+                                    <option value="Medio" selected>Medio</option>
+                                    <option value="Grande">Grande</option>
+                                </select>
 
                             </div>
 
