@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Api from "../../services/clientes-api"
+import Atualizar from './Atualizar';
 import Cadastrar from './Cadastrar';
 
 export default function Listagem() {
@@ -19,10 +20,6 @@ export default function Listagem() {
             setClientes(response.data);
         }
         setCarregando(false);
-    }
-
-    const atualizarCliente = (id) => {
-
     }
 
     const deletarCliente = (id) => {
@@ -53,7 +50,7 @@ export default function Listagem() {
                             <td> {cliente.Nome} </td>
                             <td> {cliente.Porte} </td>
                             <td>
-                                <button className="btn btn-info btn-sm mr-2" onClick={() => atualizarCliente(cliente.Id)} data-toggle="modal" data-target="#cadastrarModal"> Alterar </button>
+                                <button className="btn btn-info btn-sm mr-2" onClick={() => setClienteAtual(cliente)} data-toggle="modal" data-target="#atualizarModal"> Alterar </button>
                                 <button className="btn btn-danger btn-sm" onClick={() => deletarCliente(cliente.Id)}> Deletar </button>
                             </td>
                         </tr>
@@ -63,8 +60,7 @@ export default function Listagem() {
             </div>
         </div>
         <Cadastrar />
-        {/* <Create updateState = {this.handleUpdateState} />
-        <Edit updateState = {this.handleUpdateState} user = {this.state.editUser} /> */}
+        <Atualizar cliente={clienteAtual} />
     </div>
   )
 }
