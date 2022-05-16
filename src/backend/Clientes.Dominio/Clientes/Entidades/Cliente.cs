@@ -5,9 +5,11 @@ namespace Clientes.Dominio.Clientes.Entidades
 {
     public class Cliente
     {
-        public virtual int Id { get; private set; }
-        public virtual string Nome { get; private set; }
-        public virtual ClientePorteEnum Porte { get; private set; }
+        public virtual int Id { get; protected set; }
+        public virtual string Nome { get; protected set; }
+        public virtual ClientePorteEnum Porte { get; protected set; }
+
+        protected Cliente() { }
 
         public Cliente(string nome, ClientePorteEnum porte)
         {
@@ -22,7 +24,7 @@ namespace Clientes.Dominio.Clientes.Entidades
 
         public virtual void SetNome(string nome)
         {
-            if (nome is null) throw new AtributoNuloExcecao(nameof(Nome));
+            if (string.IsNullOrEmpty(nome)) throw new AtributoNuloExcecao(nameof(Nome));
 
             Nome = nome;
         }
